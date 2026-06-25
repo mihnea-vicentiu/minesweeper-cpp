@@ -24,7 +24,10 @@ function(set_custom_stdlib_and_sanitizers target add_apple_asan)
     if(MSVC)
         # see https://gitlab.kitware.com/cmake/cmake/-/issues/24922
         set_target_properties(${target} PROPERTIES VS_USER_PROPS "${CMAKE_SOURCE_DIR}/disable_modules.props")
-        target_compile_options(${target} PRIVATE "$<${debug_mode}:/fsanitize=address>" /experimental:module-)
+        target_compile_options(${target} PRIVATE /experimental:module-)
+        if(add_apple_asan)
+            target_compile_options(${target} PRIVATE "$<${debug_mode}:/fsanitize=address>")
+        endif()
         return()
     endif()
 
@@ -35,25 +38,15 @@ function(set_custom_stdlib_and_sanitizers target add_apple_asan)
 
     if(APPLE)
         # first check Apple since Apple is also a kind of Unix
-        if("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang" AND add_apple_asan MATCHES true)
+        if("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang" AND add_apple_asan)
             target_compile_options(${target} PRIVATE "$<${debug_mode}:-fsanitize=address,undefined>")
             target_link_options(${target} PRIVATE "$<${debug_mode}:-fsanitize=address,undefined>")
         endif()
     elseif(UNIX)
-        if("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
-            if("${CMAKE_CXX_COMPILER_VERSION}" MATCHES "12.")
-                # check leaks on Linux since macOS does not support the leaks sanitizer yet
-                # leaks sanitizer is enabled by default on Linux, so we do not need to enable it explicitly
-                target_compile_options(${target} PRIVATE "$<${debug_mode}:-fsanitize=address,undefined>")
-                target_link_options(${target} PRIVATE "$<${debug_mode}:-fsanitize=address,undefined>")
-            elseif("${CMAKE_CXX_COMPILER_VERSION}" MATCHES "13.")
-                # use semi-colons instead of spaces to separate arguments
-                # it is recommended to quote generator expressions in order to avoid unintentional splitting
-                target_compile_options(${target} PRIVATE "$<${debug_mode}:-fsanitize=memory,undefined;-fsanitize-recover=memory,undefined;-fsanitize-memory-track-origins>")
-                target_link_options(${target} PRIVATE "$<${debug_mode}:-fsanitize=memory,undefined;-fsanitize-recover=memory,undefined;-fsanitize-memory-track-origins;-Wl,-rpath,tools/llvm-project/build/lib>")
-            else()
-                message("No matching Clang version to add sanitizer flags!")
-            endif()
+        if("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang" AND add_apple_asan)
+            # Leak sanitizer is enabled by default with AddressSanitizer on Linux.
+            target_compile_options(${target} PRIVATE "$<${debug_mode}:-fsanitize=address,undefined>")
+            target_link_options(${target} PRIVATE "$<${debug_mode}:-fsanitize=address,undefined>")
         endif()
     endif()
 endfunction()
@@ -75,6 +68,11 @@ FetchContent_Declare(
   # GIT_SHALLOW    1  # works only with branches or tags, not with arbitrary commit hashes
 )
 
+set(SFML_BUILD_AUDIO OFF CACHE BOOL "" FORCE)
+set(SFML_BUILD_DOC OFF CACHE BOOL "" FORCE)
+set(SFML_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+set(SFML_BUILD_NETWORK OFF CACHE BOOL "" FORCE)
+set(SFML_BUILD_TEST_SUITE OFF CACHE BOOL "" FORCE)
 
 FetchContent_MakeAvailable(SFML)
 

@@ -137,9 +137,9 @@ jobs:
           #   # This env runs memory sanitizers
 
           - os: ubuntu-22.04
-            c: clang-12
-            cxx: clang++-12
-            name: "ASan: Ubuntu 22.04 Clang 12"
+            c: clang-14
+            cxx: clang++-14
+            name: "ASan: Ubuntu 22.04 Clang 14"
             cmake_flags: -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DBUILD_SHARED_LIBS=FALSE
             runs_asan: true
             # This env runs address sanitizers
@@ -216,11 +216,11 @@ jobs:
           libxkbcommon-x11-0 \
           libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 libxcb-render-util0 libxcb-xinerama0 libxcb-xfixes0
 
-      - name: Install libc++ (Linux Clang 12)
+      - name: Install libc++ (Linux Clang 14)
         if: runner.os == 'Linux' && matrix.runs_asan == true
         run: |
           sudo apt-get update
-          sudo apt-get install --no-install-recommends libc++-12-dev libc++abi-12-dev libunwind-12-dev
+          sudo apt-get install --no-install-recommends clang-14 libc++-14-dev libc++abi-14-dev libunwind-14-dev
 
       # - name: Install ninja and libc++ (Linux Clang 13)
       #   if: runner.os == 'Linux' && matrix.runs_msan == true
