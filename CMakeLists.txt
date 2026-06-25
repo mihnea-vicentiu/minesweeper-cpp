@@ -32,11 +32,6 @@ function(set_custom_stdlib_and_sanitizers target add_apple_asan)
         return()
     endif()
 
-    if("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
-        target_compile_options(${target} PRIVATE -stdlib=libc++)
-        target_link_options(${target} PRIVATE -stdlib=libc++)
-    endif()
-
     if(APPLE)
         # first check Apple since Apple is also a kind of Unix
         if("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang" AND ENABLE_SANITIZERS AND add_apple_asan)
@@ -80,6 +75,10 @@ FetchContent_MakeAvailable(SFML)
 set_custom_stdlib_and_sanitizers(sfml-system false)
 set_custom_stdlib_and_sanitizers(sfml-window false)
 set_custom_stdlib_and_sanitizers(sfml-graphics false)
+
+if(MSVC)
+    target_link_libraries(sfml-graphics PRIVATE legacy_stdio_definitions)
+endif()
 
 ###############################################################################
 

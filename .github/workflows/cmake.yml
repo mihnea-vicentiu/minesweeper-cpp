@@ -199,11 +199,11 @@ jobs:
           libxkbcommon-x11-0 \
           libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 libxcb-render-util0 libxcb-xinerama0 libxcb-xfixes0
 
-      - name: Install libc++ (Linux Clang 14)
+      - name: Install Clang 14
         if: runner.os == 'Linux' && matrix.runs_asan == true
         run: |
           sudo apt-get update
-          sudo apt-get install --no-install-recommends clang-14 libc++-14-dev libc++abi-14-dev libunwind-14-dev
+          sudo apt-get install --no-install-recommends clang-14
 
       # - name: Install ninja and libc++ (Linux Clang 13)
       #   if: runner.os == 'Linux' && matrix.runs_msan == true
