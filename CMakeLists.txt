@@ -80,6 +80,10 @@ if(MSVC)
     target_link_libraries(sfml-graphics PRIVATE legacy_stdio_definitions)
 endif()
 
+if(APPLE AND "${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
+    target_compile_options(sfml-window PRIVATE -Wno-error=unused-command-line-argument)
+endif()
+
 ###############################################################################
 
 # external dependencies with find_package
