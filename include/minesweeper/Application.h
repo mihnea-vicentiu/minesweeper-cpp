@@ -1,12 +1,7 @@
-//
-// Created by Mihnea on 5/19/2023.
-//
-
-#ifndef OOP_APPLICATION_H
-#define OOP_APPLICATION_H
+#pragma once
 
 #include "Entity.h"
-#include "Game.h"
+
 #include <vector>
 
 class Application: public Entity {
@@ -25,5 +20,3 @@ public:
     void draw() override;
     void update() override;
 };
-
-#endif //OOP_APPLICATION_H

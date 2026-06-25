@@ -1,16 +1,12 @@
-//
-// Created by Mihnea on 5/14/2023.
-//
+#pragma once
 
-#ifndef OOP_GAME_H
-#define OOP_GAME_H
+#include "Entity.h"
+#include "GameBoard.h"
+#include "Smiley.h"
 
 #include <SFML/Graphics.hpp>
-#include "GameBoard.h"
-#include "Application.h"
-#include "Smiley.h"
-#include "Entity.h"
-#include <iostream>
+
+#include <memory>
 
 class Game: public Entity {
 private:
@@ -28,5 +24,3 @@ public:
     int Type() const;
     bool gameStatus() const;
 };
-
-#endif //OOP_GAME_H

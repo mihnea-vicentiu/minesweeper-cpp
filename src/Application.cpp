@@ -1,10 +1,7 @@
-//
-// Created by Mihnea on 5/19/2023.
-//
-
-#include "../headers/Application.h"
-#include "../headers/HighScore.h"
-#include "../headers/MenuFactory.h"
+#include "minesweeper/Application.h"
+#include "minesweeper/Game.h"
+#include "minesweeper/HighScore.h"
+#include "minesweeper/MenuFactory.h"
 
 Application::Application(): Entity(), STEXT(false), idx(1) {
     key.resize(32);

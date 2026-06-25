@@ -1,9 +1,4 @@
-//
-// Created by Mihnea on 6/18/2023.
-//
-
-#ifndef OOP_TIMER_H
-#define OOP_TIMER_H
+#pragma once
 
 #include <chrono>
 
@@ -37,5 +32,3 @@ public:
         return std::chrono::duration_cast<ReturnType>(endTime - startTime);
     }
 };
-
-#endif //OOP_TIMER_H

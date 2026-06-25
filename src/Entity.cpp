@@ -1,10 +1,8 @@
-//
-// Created by Mihnea on 5/18/2023.
-//
+#include "minesweeper/Entity.h"
+#include "minesweeper/Game.h"
 
-
-#include "../headers/Entity.h"
-#include "../headers/Game.h"
+#include <map>
+#include <tuple>
 
 std::string Entity::playerName = "DEFAULT";
 

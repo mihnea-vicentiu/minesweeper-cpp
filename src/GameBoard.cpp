@@ -1,9 +1,5 @@
-//
-// Created by Mihnea on 5/8/2023.
-//
-
-#include "../headers/GameBoard.h"
-#include "../headers/Timer.h"
+#include "minesweeper/GameBoard.h"
+#include "minesweeper/Timer.h"
 
 std::pair <int, int> GameBoard::gen_mine(std::mt19937& game_seed) const {
     // generate random position on the board

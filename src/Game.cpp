@@ -1,9 +1,6 @@
-//
-// Created by Mihnea on 5/14/2023.
-//
-
-#include "../headers/Game.h"
-#include "../headers/MenuFactory.h"
+#include "minesweeper/Game.h"
+#include "minesweeper/Application.h"
+#include "minesweeper/MenuFactory.h"
 
 Game::Game(int _row, int _col, int _nr) : Entity(), row(_row), col(_col), nr(_nr), pushed(false) {
     board = std::make_shared<GameBoard>(row, col, nr);

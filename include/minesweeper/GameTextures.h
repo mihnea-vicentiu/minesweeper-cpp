@@ -1,12 +1,10 @@
-//
-// Created by Mihnea on 5/8/2023.
-//
+#pragma once
 
-#ifndef OOP_GAMETEXTURES_H
-#define OOP_GAMETEXTURES_H
+#include "Exceptions.h"
 
 #include <SFML/Graphics.hpp>
-#include "Exceptions.h"
+
+#include <string>
 #include <vector>
 
 class GameTextures {
@@ -62,5 +60,3 @@ public:
     sf::IntRect& getNeighbouringMines(const int& nr);
     sf::IntRect& getNumber(const int& nr);
 };
-
-#endif //OOP_GAMETEXTURES_H

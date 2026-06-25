@@ -1,13 +1,10 @@
-//
-// Created by Mihnea on 5/6/2023.
-//
+#pragma once
 
-#ifndef OOP_CELL_H
-#define OOP_CELL_H
-
-#include <SFML/Graphics.hpp>
 #include "GameTextures.h"
 #include "WindowManager.h"
+
+#include <SFML/Graphics.hpp>
+
 #include <ostream>
 
 class Cell {
@@ -47,4 +44,3 @@ public:
     bool operator == (const Cell& other) const = delete;
     friend std::ostream& operator << (std::ostream& stream, const Cell& cell);
 };
-#endif //OOP_CELL_H

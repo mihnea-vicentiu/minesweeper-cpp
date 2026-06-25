@@ -1,9 +1,5 @@
-//
-// Created by Mihnea on 5/14/2023.
-//
-
-#include "../headers/WindowManager.h"
-#include "../headers/Timer.h"
+#include "minesweeper/WindowManager.h"
+#include "minesweeper/Timer.h"
 
 /* constructors and destructors */
 WindowManager::WindowManager(): app(nullptr),

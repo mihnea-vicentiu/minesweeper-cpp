@@ -1,8 +1,4 @@
-//
-// Created by Mihnea on 5/8/2023.
-//
-
-#include "../headers/GameTextures.h"
+#include "minesweeper/GameTextures.h"
 
 GameTextures::GameTextures() { // Initialize the sprites configurations
     mines[0] = sf::IntRect(18, 56, 16, 16);
@@ -116,7 +112,7 @@ sf::Texture& GameTextures::getTShape2() {
 
 sf::Font& GameTextures::getFont() {
     if (!font_load) {
-        if (!font.loadFromFile("Font.ttf"))
+        if (!font.loadFromFile("assets/Font.ttf"))
             throw load_font_error();
         font_load = true;
     }

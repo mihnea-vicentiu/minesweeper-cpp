@@ -1,10 +1,6 @@
-//
-// Created by mihne on 6/18/2023.
-//
-
-#include "../headers/HighScore.h"
-#include "../headers/Application.h"
-#include "../headers/MenuFactory.h"
+#include "minesweeper/HighScore.h"
+#include "minesweeper/Application.h"
+#include "minesweeper/MenuFactory.h"
 
 HighScore::HighScore(): fin("highscore.txt"),  idx(0) {
     std::string Name, GameType, FinalTime;

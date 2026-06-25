@@ -1,13 +1,9 @@
-//
-// Created by Mihnea on 5/17/2023.
-//
+#pragma once
 
-#ifndef OOP_SMILEY_H
-#define OOP_SMILEY_H
+#include "GameTextures.h"
+#include "WindowManager.h"
 
 #include <SFML/Graphics.hpp>
-#include "WindowManager.h"
-#include "GameTextures.h"
 
 class Smiley {
 private:
@@ -29,5 +25,3 @@ public:
     void setPos();
     void drawSmiley(sf::RenderWindow& app);
 };
-
-#endif //OOP_SMILEY_H

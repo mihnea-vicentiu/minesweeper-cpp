@@ -1,12 +1,9 @@
-//
-// Created by Mihnea on 5/14/2023.
-//
+#pragma once
 
-#ifndef OOP_WINDOWMANAGER_H
-#define OOP_WINDOWMANAGER_H
+#include "GameTextures.h"
 
 #include <SFML/Graphics.hpp>
-#include "GameTextures.h"
+
 #include <iostream>
 #include <vector>
 
@@ -58,5 +55,3 @@ public:
     /* operators */
     friend std::ostream& operator << (std::ostream& stream, const WindowManager& window);
 };
-
-#endif //OOP_WINDOWMANAGER_H

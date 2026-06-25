@@ -1,8 +1,4 @@
-//
-// Created by mihne on 6/18/2023.
-//
-
-#include "../headers/Timer.h"
+#include "minesweeper/Timer.h"
 
 Timer::Timer(): startTime(std::chrono::high_resolution_clock::time_point()), endTime(std::chrono::high_resolution_clock::time_point()),
 isRunning(false) {}

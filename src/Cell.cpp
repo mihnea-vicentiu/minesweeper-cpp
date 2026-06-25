@@ -1,8 +1,4 @@
-//
-// Created by Mihnea on 5/6/2023.
-//
-
-#include "../headers/Cell.h"
+#include "minesweeper/Cell.h"
 
 /* constructors and destructors */
 Cell::Cell():

@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.24)
 
-# NOTE: update executable name in .github/workflows/cmake.yml:25 when changing executable name in this file
+# NOTE: update executable name in .github/workflows/cmake.yml when changing executable name in this file
 # for now, the project name is used as the executable name
-project(oop)
+project(minesweeper)
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -94,8 +94,37 @@ endif()
 
 ###############################################################################
 
-# NOTE: update executable name in .github/workflows/cmake.yml:25 when changing name here
-add_executable(${PROJECT_NAME} main.cpp headers/Cell.h src/Cell.cpp headers/GameTextures.h src/GameTextures.cpp headers/GameBoard.h src/GameBoard.cpp headers/WindowManager.h src/WindowManager.cpp headers/Game.h src/Game.cpp headers/Smiley.h src/Smiley.cpp headers/Entity.h src/Entity.cpp src/Application.cpp headers/Application.h headers/Exceptions.h src/HighScore.cpp headers/HighScore.h src/Timer.cpp headers/Timer.h headers/HighScore.h headers/HighScore.h headers/MenuFactory.h)
+# NOTE: update executable name in .github/workflows/cmake.yml when changing name here
+set(PROJECT_SOURCES
+    src/main.cpp
+    src/Application.cpp
+    src/Cell.cpp
+    src/Entity.cpp
+    src/Game.cpp
+    src/GameBoard.cpp
+    src/GameTextures.cpp
+    src/HighScore.cpp
+    src/Smiley.cpp
+    src/Timer.cpp
+    src/WindowManager.cpp
+)
+
+set(PROJECT_HEADERS
+    include/minesweeper/Application.h
+    include/minesweeper/Cell.h
+    include/minesweeper/Entity.h
+    include/minesweeper/Exceptions.h
+    include/minesweeper/Game.h
+    include/minesweeper/GameBoard.h
+    include/minesweeper/GameTextures.h
+    include/minesweeper/HighScore.h
+    include/minesweeper/MenuFactory.h
+    include/minesweeper/Smiley.h
+    include/minesweeper/Timer.h
+    include/minesweeper/WindowManager.h
+)
+
+add_executable(${PROJECT_NAME} ${PROJECT_SOURCES} ${PROJECT_HEADERS})
 
 ###############################################################################
 
@@ -129,6 +158,7 @@ set_custom_stdlib_and_sanitizers(${PROJECT_NAME} true)
 
 # use SYSTEM so clang-tidy does not report warnings from these directories
 #target_include_directories(${PROJECT_NAME} SYSTEM PRIVATE ext/<SomeHppLib>/include)
+target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 target_include_directories(${PROJECT_NAME} SYSTEM PRIVATE ${SFML_SOURCE_DIR}/include)
 target_link_directories(${PROJECT_NAME} PRIVATE ${SFML_BINARY_DIR}/lib)
 target_link_libraries(${PROJECT_NAME} sfml-graphics sfml-window sfml-system Threads::Threads)
@@ -141,10 +171,8 @@ endif()
 ###############################################################################
 
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/assets DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
-file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/Font.ttf DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
 install (DIRECTORY assets DESTINATION bin)
-install (FILES Font.ttf DESTINATION bin)
 
 
 # copy binaries to "bin" folder; these are uploaded as artifacts on each release

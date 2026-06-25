@@ -1,12 +1,6 @@
-//
-// Created by mihne on 6/19/2023.
-//
-
-#ifndef OOP_MENUFACTORY_H
-#define OOP_MENUFACTORY_H
+#pragma once
 
 #include <memory>
-#pragma once
 
 template <typename T>
 class MenuFactory {
@@ -27,5 +21,3 @@ public:
         return std::make_shared<T>();
     }
 };
-
-#endif //OOP_MENUFACTORY_H

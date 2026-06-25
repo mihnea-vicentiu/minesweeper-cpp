@@ -1,18 +1,16 @@
-//
-// Created by Mihnea on 5/18/2023.
-//
+#pragma once
 
-#ifndef OOP_ENTITY_H
-#define OOP_ENTITY_H
-
-#include "WindowManager.h"
 #include "Timer.h"
-#include <typeinfo>
-#include <memory>
-#include <fstream>
-#include <utility>
+#include "WindowManager.h"
+
 #include <sstream>
 #include <algorithm>
+#include <chrono>
+#include <fstream>
+#include <memory>
+#include <string>
+#include <utility>
+#include <vector>
 
 class Entity: public std::enable_shared_from_this<Entity> {
 protected:
@@ -35,5 +33,3 @@ public:
     void processEvents();
     void setCurrent(std::shared_ptr<Entity> newCurr);
 };
-
-#endif //OOP_ENTITY_H

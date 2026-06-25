@@ -1,13 +1,10 @@
-//
-// Created by Mihnea on 6/18/2023.
-//
-
-#ifndef OOP_HIGHSCORE_H
-#define OOP_HIGHSCORE_H
+#pragma once
 
 #include "Entity.h"
+
 #include <chrono>
 #include <fstream>
+#include <vector>
 
 class HighScore: public Entity {
 private:
@@ -23,5 +20,3 @@ public:
     void update() override;
     void draw() override;
 };
-
-#endif //OOP_HIGHSCORE_H

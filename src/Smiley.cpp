@@ -1,8 +1,4 @@
-//
-// Created by Mihnea on 5/17/2023.
-//
-
-#include "../headers/Smiley.h"
+#include "minesweeper/Smiley.h"
 
 Smiley::Smiley():
 smiley(GameTextures::getInstance()-> getTexture()), settings(GameTextures::getInstance()-> getTexture()),

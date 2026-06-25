@@ -1,6 +1,10 @@
-#include "headers/MenuFactory.h"
-#include "headers/Entity.h"
-#include "headers/Application.h"
+#include "minesweeper/Application.h"
+#include "minesweeper/Entity.h"
+#include "minesweeper/Exceptions.h"
+#include "minesweeper/MenuFactory.h"
+
+#include <iostream>
+#include <memory>
 
 int main() {
     std::shared_ptr<Application> minesweeper = MenuFactory<Application>::createApp();

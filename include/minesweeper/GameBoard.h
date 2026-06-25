@@ -1,18 +1,15 @@
-//
-// Created by Mihnea on 5/8/2023.
-//
-
-#ifndef OOP_GAMEBOARD_H
-#define OOP_GAMEBOARD_H
-
-#include <SFML/Graphics.hpp>
-#include <vector>
-#include <random>
-#include <chrono>
-#include <queue>
+#pragma once
 
 #include "Cell.h"
+
+#include <SFML/Graphics.hpp>
+
+#include <chrono>
 #include <iostream>
+#include <queue>
+#include <random>
+#include <utility>
+#include <vector>
 
 class GameBoard {
 private:
@@ -53,5 +50,3 @@ public:
     /* operators */
     friend std::ostream& operator << (std::ostream& stream, const GameBoard& MineSweeper);
 };
-
-#endif //OOP_GAMEBOARD_H
