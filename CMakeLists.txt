@@ -9,6 +9,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 option(WARNINGS_AS_ERRORS "Treat warnings as errors" OFF)
+option(ENABLE_SANITIZERS "Enable sanitizer flags" OFF)
 
 # disable sanitizers when releasing executables without explicitly requested debug info
 # use generator expressions to set flags correctly in both single and multi config generators
@@ -25,7 +26,7 @@ function(set_custom_stdlib_and_sanitizers target add_apple_asan)
         # see https://gitlab.kitware.com/cmake/cmake/-/issues/24922
         set_target_properties(${target} PROPERTIES VS_USER_PROPS "${CMAKE_SOURCE_DIR}/disable_modules.props")
         target_compile_options(${target} PRIVATE /experimental:module-)
-        if(add_apple_asan)
+        if(ENABLE_SANITIZERS AND add_apple_asan)
             target_compile_options(${target} PRIVATE "$<${debug_mode}:/fsanitize=address>")
         endif()
         return()
@@ -38,12 +39,12 @@ function(set_custom_stdlib_and_sanitizers target add_apple_asan)
 
     if(APPLE)
         # first check Apple since Apple is also a kind of Unix
-        if("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang" AND add_apple_asan)
+        if("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang" AND ENABLE_SANITIZERS AND add_apple_asan)
             target_compile_options(${target} PRIVATE "$<${debug_mode}:-fsanitize=address,undefined>")
             target_link_options(${target} PRIVATE "$<${debug_mode}:-fsanitize=address,undefined>")
         endif()
     elseif(UNIX)
-        if("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang" AND add_apple_asan)
+        if("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang" AND ENABLE_SANITIZERS AND add_apple_asan)
             # Leak sanitizer is enabled by default with AddressSanitizer on Linux.
             target_compile_options(${target} PRIVATE "$<${debug_mode}:-fsanitize=address,undefined>")
             target_link_options(${target} PRIVATE "$<${debug_mode}:-fsanitize=address,undefined>")
